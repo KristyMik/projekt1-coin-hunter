@@ -9,7 +9,16 @@ if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || pan
 // sem začni psát svůj program
 
 let panacek = document.querySelector('#panacek');
+let mince = document.querySelector('#mince');
+//let souradniceMince = Math.floor(Math.random());
+mince.style.left = Math.floor(Math.random() * 1000) + 1 + "px";
+mince.style.top = Math.floor(Math.random() * 1000 )+ 1 + "px";
 
+
+console.log(window.getComputedStyle(mince).getPropertyValue("top"));
+console.log(window.getComputedStyle(mince).getPropertyValue("right"));
+console.log(window.getComputedStyle(mince).getPropertyValue("left"));
+console.log(window.getComputedStyle(mince).getPropertyValue("bottom"));
 	
 document.onkeydown = pohniPanackem;
 console.log(window.getComputedStyle(panacek).getPropertyValue("top"));
