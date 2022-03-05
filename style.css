@@ -44,6 +44,8 @@ body {
 #panacek,
 #mince {
 	position: absolute;
+	top: 0px;
+	left: 0px;
 }
 
 #panacek {
