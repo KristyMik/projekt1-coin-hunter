@@ -1,40 +1,56 @@
-// toto budeš potřebovat později
-/*
-if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
-	// panacek a mince se prekryvaji
-}
-*/
+
 
 
 // sem začni psát svůj program
 
 let panacek = document.querySelector('#panacek');
 let mince = document.querySelector('#mince');
-//let souradniceMince = Math.floor(Math.random());
-mince.style.left = Math.floor(Math.random() * 1000) + 1 + "px";
-mince.style.top = Math.floor(Math.random() * 1000 )+ 1 + "px";
+let panacekSirka = 40;
+let panacekVyska = 40;
+let minceSirka = 30;
+let minceVyska = 30;
 
 
+document.onkeydown = pohniPanackem;
+
+mince.style.left = Math.floor(Math.random() * 1000) + "px";
+mince.style.top = Math.floor(Math.random() * 1000) + "px";
+
+/*
 console.log(window.getComputedStyle(mince).getPropertyValue("top"));
 console.log(window.getComputedStyle(mince).getPropertyValue("right"));
 console.log(window.getComputedStyle(mince).getPropertyValue("left"));
 console.log(window.getComputedStyle(mince).getPropertyValue("bottom"));
 	
-document.onkeydown = pohniPanackem;
+
 console.log(window.getComputedStyle(panacek).getPropertyValue("top"));
 console.log(window.getComputedStyle(panacek).getPropertyValue("right"));
 console.log(window.getComputedStyle(panacek).getPropertyValue("left"));
 console.log(window.getComputedStyle(panacek).getPropertyValue("bottom"));
-//console.log(nahore + " " + vpravo + " " + vlevo + " " + dole);
+//console.log(nahore + " " + vpravo + " " + vlevo + " " + dole);*/
 
 function pohniPanackem(x) {
 
 	x = x || window.event;
-	
-	if(x.keyCode == '37') {
+
+	let panacekX =  parseInt(window.getComputedStyle(panacek).getPropertyValue("left"));
+	let panacekY = parseInt(window.getComputedStyle(panacek).getPropertyValue("top"));
+	let minceX = parseInt(window.getComputedStyle(mince).getPropertyValue("left"));
+	let minceY = parseInt(window.getComputedStyle(mince).getPropertyValue("top"));
+
+	if (!( panacekX + panacekSirka < minceX || minceX + minceSirka < panacekX || panacekY + panacekVyska < minceY || minceY + minceVyska < panacekY)) {
+		// panacek a mince se prekryvaji
+		
+		mince.style.left = Math.floor(Math.random() * 1000) + "px";
+		mince.style.top = Math.floor(Math.random() * 1000 ) + "px";
+		
+	} 
+
+
+	if (x.keyCode == '37') {
 		//leva sipka
 		let vlevo = parseInt(window.getComputedStyle(panacek).getPropertyValue("left"));
-		panacek.style.left = vlevo - 20 + "px";
+		panacek.style.left = vlevo - 10 + "px";
 		console.log("leva sipka");
 		console.log(window.getComputedStyle(panacek).getPropertyValue("left"));
 		panacek.src = "obrazky/panacek-vlevo.png";
@@ -45,25 +61,31 @@ function pohniPanackem(x) {
 		let nahore = parseInt(window.getComputedStyle(panacek).getPropertyValue("top"));
 		console.log("sipka nahoru");
 		panacek.src = "obrazky/panacek-nahoru.png";
-		panacek.style.top = nahore - 20 + "px";
+		panacek.style.top = nahore - 10 + "px";
 			}
 
 			else if(x.keyCode == '39') {
 				//prava sipka
 				let vpravo= parseInt(window.getComputedStyle(panacek).getPropertyValue("left"));
-		    	console.log("prava sipka");
-				panacek.style.left = vpravo + 20 + "px";
+				console.log("prava sipka");
+				panacek.style.left = vpravo + 10 + "px";
 				panacek.src = "obrazky/panacek-vpravo.png";
 					}
 
 					else if(x.keyCode == '40') {
 						//sipka dolu 
 						let nahore = parseInt(window.getComputedStyle(panacek).getPropertyValue("top"));
-						panacek.style.top = nahore + 20 + "px";
+						panacek.style.top = nahore + 10 + "px";
 						console.log("sipka dolu");
 						panacek.src = "obrazky/panacek.png";
 							}
 
+	
 
 }
+
+
+
+
+
 
