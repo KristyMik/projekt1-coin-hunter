@@ -6,10 +6,10 @@
 let panacek = document.querySelector('#panacek');
 let mince = document.querySelector('#mince');
 let score = document.querySelector('#score');
-let panacekSirka = 40;
-let panacekVyska = 40;
-let minceSirka = 30;
-let minceVyska = 30;
+let panacekSirka = panacek.clientWidth;
+let panacekVyska = panacek.clientHeight;
+let minceSirka = mince.clientWidth;
+let minceVyska = mince.clientHeight;
 let hudba = document.getElementById("hudba");
 let fanfara = document.getElementById("zvukfanfara");
 let zvukMince = document.getElementById("zvukmince");
@@ -20,6 +20,8 @@ let width = window.innerWidth;
 console.log("width: " + width + " height: " + height);
 panacek.style.top = height/2 + "px";
 panacek.style.left = width/2 + "px";
+
+
 
 document.onkeydown = pohniPanackem;
 
@@ -126,7 +128,7 @@ if (i===5){
 
 	fanfara.play();
 	alert("Gratulujeme, vyhráváš!!!!");
-	
+		
 }
 
 }

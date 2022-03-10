@@ -42,11 +42,17 @@ body {
 }
 
 #panacek,
-#mince {
+#mince,
+#panacek2 {
 	position: absolute;
 	
 }
 
 #panacek {
+	z-index: 1;
+}
+
+
+#panacek2 {
 	z-index: 1;
 }
