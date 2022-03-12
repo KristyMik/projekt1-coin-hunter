@@ -1,6 +1,3 @@
-
-
-
 // sem začni psát svůj program
 
 let panacek = document.querySelector('#panacek');
@@ -14,8 +11,10 @@ let hudba = document.getElementById("hudba");
 let fanfara = document.getElementById("zvukfanfara");
 let zvukMince = document.getElementById("zvukmince");
 let i = 0;
+let vyhrals = false;
 
 let height = window.innerHeight;
+
 let width = window.innerWidth;
 console.log("width: " + width + " height: " + height);
 panacek.style.top = height/2 + "px";
@@ -25,21 +24,10 @@ panacek.style.left = width/2 + "px";
 
 document.onkeydown = pohniPanackem;
 
-mince.style.left = Math.floor(Math.random() * 1000) + "px";
-mince.style.top = Math.floor(Math.random() * 1000) + "px";
+mince.style.left = Math.floor(Math.random() * width) + "px";
+mince.style.top = Math.floor(Math.random() * height) + "px";
+console.log("left: " + mince.style.left + " top: " + mince.style.top);
 
-/*
-console.log(window.getComputedStyle(mince).getPropertyValue("top"));
-console.log(window.getComputedStyle(mince).getPropertyValue("right"));
-console.log(window.getComputedStyle(mince).getPropertyValue("left"));
-console.log(window.getComputedStyle(mince).getPropertyValue("bottom"));
-	
-
-console.log(window.getComputedStyle(panacek).getPropertyValue("top"));
-console.log(window.getComputedStyle(panacek).getPropertyValue("right"));
-console.log(window.getComputedStyle(panacek).getPropertyValue("left"));
-console.log(window.getComputedStyle(panacek).getPropertyValue("bottom"));
-//console.log(nahore + " " + vpravo + " " + vlevo + " " + dole);*/
 
 function pohniPanackem(x) {
 
@@ -52,7 +40,7 @@ function pohniPanackem(x) {
 		let vlevo = parseInt(window.getComputedStyle(panacek).getPropertyValue("left"));
 		if(vlevo > 0){
 		panacek.style.left = vlevo - 10 + "px";
-		console.log("leva sipka");
+		//console.log("leva sipka");
 		//console.log(window.getComputedStyle(panacek).getPropertyValue("left"));
 		panacek.src = "obrazky/panacek-vlevo.png";
 	}
@@ -62,7 +50,7 @@ function pohniPanackem(x) {
 		//sipka nahoru 
 		let nahore = parseInt(window.getComputedStyle(panacek).getPropertyValue("top"));
 		if(nahore > 0){
-		console.log("sipka nahoru");
+	//	console.log("sipka nahoru");
 		panacek.src = "obrazky/panacek-nahoru.png";
 		panacek.style.top = nahore - 10 + "px";
 			}
@@ -71,7 +59,7 @@ function pohniPanackem(x) {
 				//prava sipka
 				let vpravo= parseInt(window.getComputedStyle(panacek).getPropertyValue("left"));
 				if( vpravo < width){
-				console.log("prava sipka");
+			//	console.log("prava sipka");
 				panacek.style.left = vpravo + 10 + "px";
 				panacek.src = "obrazky/panacek-vpravo.png";
 					}
@@ -81,7 +69,7 @@ function pohniPanackem(x) {
 						let dole = parseInt(window.getComputedStyle(panacek).getPropertyValue("top"));
 						if(dole < height){
 						panacek.style.top = dole + 10 + "px";
-						console.log("sipka dolu");
+					//	console.log("sipka dolu");
 						panacek.src = "obrazky/panacek.png";
 							}
 						}
@@ -94,10 +82,9 @@ function pohniPanackem(x) {
 									pohniPanackem();
 								}
 	sezraniMince();
-	vyhrej();
+	vyhralsJednou();
+	
 }
-
-
 
 	function sezraniMince(){
 
@@ -111,8 +98,8 @@ function pohniPanackem(x) {
 	
 			// panacek a mince se prekryvaji
 		
-			mince.style.left = Math.floor(Math.random() * 1000) + "px";
-			mince.style.top = Math.floor(Math.random() * 1000 ) + "px";
+			mince.style.left = Math.floor(Math.random() * width) + "px";
+			mince.style.top = Math.floor(Math.random() * height) + "px";
 					
 			zvukMince.play();
 			return i = i + 1;
@@ -120,7 +107,15 @@ function pohniPanackem(x) {
 				console.log(i);
 				score.innerText = i;
 				
+				
 }
+
+
+function vyhralsJednou(){
+	if (!vyhrals) {
+		vyhrej();
+	}
+	}
 
 function vyhrej(){
 
@@ -128,7 +123,6 @@ if (i===5){
 
 	fanfara.play();
 	alert("Gratulujeme, vyhráváš!!!!");
-		
+	vyhrals = true;	
 }
-
 }
